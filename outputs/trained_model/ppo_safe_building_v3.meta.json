@@ -1,0 +1,26 @@
+{
+  "observation_version": "v3",
+  "features": [
+    "floor_1_temp",
+    "floor_2_temp",
+    "floor_3_temp",
+    "outdoor_temp",
+    "outdoor_humidity",
+    "indoor_humidity",
+    "occupancy",
+    "electricity_price",
+    "solar_generation",
+    "building_area",
+    "hour",
+    "floor_1_target",
+    "floor_2_target",
+    "floor_3_target"
+  ],
+  "action_space": "MultiDiscrete([4,4,4])",
+  "total_timesteps": 300000,
+  "seed": 42,
+  "trained_at": "2026-10-25T13:47:34.969863+00:00",
+  "training_data": "synthetic domain-randomised environment (no CSV data found)",
+  "stable_baselines3": "2.9.0",
+  "note": "Trained in a simplified simulation; not validated on a physical building."
+}

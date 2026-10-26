@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+outputs/trained_model/training.log
+outputs/trained_model/training_status.json

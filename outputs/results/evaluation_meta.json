@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-10-25T13:48:36.961132+00:00",
+  "model": "/home/claude/work/SafeRL_Building_Energy_Optimization/outputs/trained_model/ppo_safe_building_v3.zip",
+  "observation_version": "v3",
+  "episodes": 10,
+  "steps_per_episode": 168,
+  "seed": 1000,
+  "scenario_source": "synthetic scenarios (no CSV data found)",
+  "note": "Simulated-environment results. Values are model estimates, not measured building data."
+}
