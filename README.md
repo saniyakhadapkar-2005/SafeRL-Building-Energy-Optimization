@@ -1,293 +1,470 @@
 # Safe RL-Based Building Energy Optimization
 
-### Safe Reinforcement Learning for Energy-Efficient and Comfortable Buildings
+### Safe Reinforcement Learning for Energy-Efficient Building Management
 
-A Python-based project that uses **Proximal Policy Optimization (PPO)** and a rule-based Safety Layer to optimize energy consumption in a simulated three-floor building while maintaining indoor temperature within defined comfort and safety limits.
+A Python-based academic project that explores **Proximal Policy Optimization (PPO)** and rule-based safety constraints for optimizing HVAC control in a simulated three-floor building.
 
-The project includes a Streamlit dashboard, simulated HVAC control, real outdoor weather integration through Open-Meteo, interactive Plotly visualizations, and performance evaluation against a rule-based baseline controller.
+The project includes a Streamlit dashboard, a simulated building environment, a Safety Layer, weather integration, performance analytics, trained reinforcement learning model files, and automated tests.
 
-> **Important:** This is an academic simulation prototype. Indoor temperatures, energy consumption, comfort, electricity cost, and reward are simulated. No physical HVAC equipment is controlled, and simulation results should not be interpreted as measured real-world energy savings.
+> **Project Type:** Academic Simulation Prototype  
+> **Primary Language:** Python  
+> **Reinforcement Learning Algorithm:** Proximal Policy Optimization (PPO)  
+> **Dashboard:** Streamlit  
+> **GitHub Repository:** [SafeRL-Building-Energy-Optimization](https://github.com/saniyakhadapkar-2005/SafeRL-Building-Energy-Optimization)
 
+## 1. Project Overview
 
-## Project Overview
+Building energy management is an important application of intelligent control systems. Heating, ventilation, and air conditioning (HVAC) systems must maintain suitable indoor temperatures while managing energy consumption.
 
-Buildings consume energy to maintain comfortable indoor conditions. Traditional HVAC controllers may not adapt optimally to changing weather, occupancy, temperature targets, and energy requirements.
+Traditional control methods use predefined rules to determine HVAC behavior. Reinforcement Learning offers another approach: an agent learns control policies through interaction with an environment and feedback from a reward function.
 
-This project explores how Reinforcement Learning can be used to improve HVAC control decisions in a simulated three-floor building.
+This project implements a Safe Reinforcement Learning-based approach for a simulated three-floor building.
 
-A PPO agent proposes HVAC control actions for the floors. Before these actions are applied, a rule-based Safety Layer checks and adjusts them according to predefined safety constraints.
+A PPO agent proposes HVAC control actions. A rule-based Safety Layer checks the proposed actions before they are applied to the simulated building. The simulation then updates building conditions and calculates relevant performance metrics.
 
-The building simulation then updates indoor temperatures and calculates energy consumption, comfort, safety metrics, and reward.
+A Streamlit dashboard presents the simulation, floor controls, weather information, model status, and evaluation analytics.
 
-A Streamlit dashboard allows users to observe the simulation, configure floor targets, inspect weather information, and compare PPO performance with a rule-based baseline.
+**Important:** This project is a simulation prototype. It does not directly control real HVAC equipment. Energy consumption, indoor temperature, comfort, and electricity costs are simulated or calculated from simulation outputs.
 
-## Problem Statement
+## 2. Problem Statement
 
-Conventional building energy management systems may consume unnecessary electricity while attempting to maintain indoor comfort.
+Building energy systems must balance energy efficiency, indoor comfort, and operational safety.
 
-The main challenge is to balance three objectives:
+An HVAC system may consume more energy than necessary when maintaining indoor conditions. However, reducing HVAC activity without considering temperature constraints can also reduce comfort or cause unsafe simulated conditions.
 
-1. Reduce simulated HVAC energy consumption.
-2. Maintain comfortable indoor temperatures.
-3. Keep indoor temperatures within predefined safety limits.
+The problem addressed by this project is:
 
-The project investigates whether a reinforcement learning controller, combined with a Safety Layer, can improve this balance in a simulated environment.
+**How can Reinforcement Learning and a rule-based Safety Layer be used to optimize simulated HVAC control while balancing energy consumption, indoor comfort, and temperature safety?**
 
-## Project Objectives
+The project evaluates the approach using a simulated building environment and a rule-based baseline controller.
 
-- Develop a simulated three-floor building environment.
-- Implement a PPO-based HVAC control agent.
-- Apply a rule-based Safety Layer to proposed control actions.
-- Simulate the influence of outdoor conditions and occupancy on the building.
-- Track energy consumption, estimated electricity cost, comfort, safety, and reward.
-- Integrate outdoor weather information using Open-Meteo.
+## 3. Project Objectives
+
+The main objectives are:
+
+- Develop a simulated environment representing a three-floor building.
+- Implement a PPO-based reinforcement learning controller.
+- Apply a rule-based Safety Layer to proposed HVAC actions.
+- Simulate indoor temperature and energy consumption.
+- Consider relevant environmental and occupancy conditions in the simulation.
+- Integrate outdoor weather information through an HTTP-based weather service.
 - Develop an interactive Streamlit dashboard.
-- Compare PPO with a rule-based baseline controller.
-- Test important environment, safety, simulation, weather, and dashboard components.
+- Visualize temperature, energy, reward, and cost metrics.
+- Compare PPO performance against a rule-based baseline.
+- Store model files and evaluation outputs.
+- Test important environment, simulation, safety, weather, and dashboard components.
 
-## Key Features
+## 4. Key Features
 
-### 1. Reinforcement Learning with PPO
+### 4.1 PPO-Based HVAC Control
 
-Uses Proximal Policy Optimization to learn HVAC control actions through interactions with the simulated building environment.
+Uses Proximal Policy Optimization to learn a control policy for the simulated building environment.
 
-### 2. Safety-Constrained Control
+### 4.2 Rule-Based Safety Layer
 
-A rule-based Safety Layer checks proposed actions and adjusts them when necessary.
+Checks proposed control actions and applies the safety rules implemented in the project.
 
-### 3. Three-Floor Building Simulation
+### 4.3 Three-Floor Building Simulation
 
-Simulates indoor temperature and HVAC energy consumption across three floors.
+Simulates building conditions and HVAC behavior across three floors.
 
-### 4. Weather Integration
+### 4.4 Interactive Streamlit Dashboard
 
-Retrieves outdoor weather information using Open-Meteo when live data is available.
+Provides a web-based interface for inspecting the simulation, adjusting available settings, and viewing performance metrics.
 
-When live weather retrieval fails, the application can use a previously successful reading or a simulated weather profile, with the source identified in the interface.
+### 4.5 Floor-Level Controls
 
-### 5. Interactive Dashboard
+Provides a dedicated dashboard page for configuring available floor-related control parameters.
 
-Provides dashboard pages for monitoring building conditions, managing floor controls, viewing weather, checking the PPO model, and examining performance.
+### 4.6 Weather Integration
 
-### 6. Performance Analytics
+Uses HTTP requests to retrieve weather information from the configured weather service. Weather availability depends on network access and service responses.
 
-Uses Plotly charts to visualize recorded simulation data and examine temperature, energy, and controller behavior.
+### 4.7 Performance Analytics
 
-### 7. Controller Evaluation
+Uses charts and evaluation data to inspect temperature, energy consumption, reward, and estimated electricity cost.
 
-Compares PPO against a rule-based baseline using reward, energy consumption, estimated electricity cost, comfort, safety, and Safety Layer interventions.
+### 4.8 Controller Evaluation
 
-### 8. Automated Testing
+Provides an evaluation workflow for comparing PPO and a rule-based baseline.
 
-Includes tests for important project components, including environment behavior, safety checks, weather handling, metrics, model loading, and dashboard-related functionality.
+### 4.9 Trained Model Storage
+
+Includes a saved PPO model and accompanying metadata in the project output directory.
+
+### 4.10 Automated Tests
+
+Includes tests for environment behavior, model loading, preprocessing, simulation, weather, and dashboard-related functionality.
 
 ---
 
-## System Architecture
-
-The system follows this general workflow:
-
-```text
-          Outdoor Weather
-                 |
-                 v
-       Weather and Scenario
-            Generation
-                 |
-                 v
-       Building Environment
-                 |
-                 v
-       State / Observation
-                 |
-                 v
-          PPO Controller
-                 |
-                 v
-        Proposed HVAC Actions
-                 |
-                 v
-           Safety Layer
-                 |
-                 v
-       Safe HVAC Control Actions
-                 |
-                 v
-       Three-Floor Simulation
-                 |
-                 v
-       Metrics and Reward
-                 |
-                 v
-        Simulation Results
-                 |
-                 v
-     Streamlit Dashboard
-       and Plotly Charts
-```
-
-The PPO controller proposes actions, while the Safety Layer checks them before they are applied to the simulation.
-
-## Technologies Used
+## 5. Technologies Used
 
 | Technology | Purpose |
 |---|---|
-| Python | Core programming language |
-| Reinforcement Learning | Learning HVAC control policies |
-| Proximal Policy Optimization (PPO) | Reinforcement learning algorithm |
-| PyTorch | Neural network computation used by the RL stack |
+| Python | Main programming language |
+| NumPy | Numerical calculations |
+| Pandas | Data processing and evaluation result analysis |
+| Gymnasium | Reinforcement Learning environment interface |
 | Stable-Baselines3 | PPO implementation and model training |
-| Gymnasium | Reinforcement learning environment interface |
 | Streamlit | Interactive web dashboard |
-| Plotly | Interactive charts and analytics |
-| Pandas | Data processing and metric analysis |
-| NumPy | Numerical computations |
-| Open-Meteo | Outdoor weather data and geocoding |
+| Plotly | Interactive visualizations |
+| Requests | HTTP requests for weather integration |
+| Matplotlib | Static charts and visualizations |
 | Pytest | Automated testing |
 
-The installed versions of these dependencies are specified in `requirements.txt`.
+Project dependencies are listed in `requirements.txt`.
+
+Stable-Baselines3 uses PyTorch as part of its reinforcement learning stack. The exact installed dependency versions depend on the Python environment and package resolution.
 
 ---
 
-## How the System Works
+## 6. System Architecture
 
-### Step 1: Weather and Scenario Generation
+The project is organized into separate modules for the dashboard, reinforcement learning, building environment, safety checks, simulation, utilities, and tests.
 
-The system obtains outdoor weather information or uses a simulated weather profile.
+### High-Level Architecture
 
-The scenario generator creates hourly inputs for the building simulation, including relevant outdoor conditions and occupancy information.
+```text
+              User
+               |
+               v
+      Streamlit Dashboard
+               |
+       +-------+--------+
+       |                |
+       v                v
+  Floor Controls    Analytics
+       |                |
+       +-------+--------+
+               |
+               v
+      Building Environment
+               |
+               v
+       State / Observation
+               |
+               v
+        PPO Controller
+               |
+               v
+       Proposed HVAC Actions
+               |
+               v
+          Safety Layer
+               |
+               v
+       Accepted / Adjusted
+          HVAC Actions
+               |
+               v
+      Building Simulation
+               |
+               v
+      Temperature and Energy
+            Metrics
+               |
+               v
+       Evaluation and Results
+```
 
-### Step 2: Building Environment
+### Main Architecture Components
 
-The building environment maintains the simulated state of the three floors.
+**Dashboard Layer**
 
-At each step, the environment provides an observation containing information needed by the controller, including floor conditions and temperature targets.
+The `dashboard/` directory contains the Streamlit application, interface components, application state, charts, and individual dashboard views.
 
-### Step 3: PPO Controller
+**Environment Layer**
 
-The PPO agent receives the observation and proposes a joint HVAC action for the three floors.
+The `environment/` directory contains the building reinforcement learning environment.
 
-The action contains a control component for each floor. When simulating an individual floor, the relevant component is used as described in the environment logic.
+**Reinforcement Learning Layer**
 
-### Step 4: Safety Layer
+The `rl/` directory contains the PPO training, evaluation, model I/O, and result-analysis modules.
 
-The Safety Layer checks the proposed actions and adjusts them according to predefined rules.
+**Safety Layer**
 
-The purpose is to reduce unsafe control behavior before actions reach the simulated building.
+The `safety/` directory contains the rule-based safety component.
 
-### Step 5: Building Simulation
+**Simulation Layer**
 
-The environment applies the resulting actions and updates each floor's indoor temperature and energy consumption.
+The `simulation/` directory contains the simulation runner, scenario generation, and metrics.
 
-The simulation also calculates comfort, safety, and reward metrics.
+**Utilities Layer**
 
-### Step 6: Dashboard Visualization
+The `utils/` directory contains weather integration and preprocessing utilities.
 
-The Streamlit application presents simulation data through metrics, tables, and interactive charts.
+**Testing Layer**
 
-Users can inspect building conditions, change settings, pause or resume the simulation, and evaluate controller performance.
+The `tests/` directory contains automated tests for selected project components.
 
 ---
 
-## Reinforcement Learning Approach
+## 7. Project Structure
 
-### Proximal Policy Optimization (PPO)
+The following tree reflects the project's source files and tracked output files. Generated Python cache files are omitted because they are not required to understand the application architecture.
 
-PPO is a policy-gradient reinforcement learning algorithm that learns a policy through repeated interaction with an environment.
-
-In this project:
-
-- **Agent:** PPO controller.
-- **Environment:** Simulated three-floor building.
-- **Observation:** Building conditions and relevant control targets.
-- **Action:** Proposed HVAC controls for the floors.
-- **Reward:** A signal used to evaluate control behavior according to the environment's reward function.
-- **Policy:** The learned mapping from observations to actions.
-
-The agent learns by collecting experience and updating its policy during training.
-
-The project uses a versioned observation structure so that incompatible or legacy models can be identified rather than silently treated as compatible.
-
-### Reward and Performance
-
-The environment calculates reward alongside energy, comfort, and safety metrics.
-
-These measurements help evaluate controller behavior. A higher reward does not automatically mean lower energy consumption or better safety, so the metrics should be examined together.
+```text
+SafeRL-Building-Energy-Optimization/
+│
+├── .streamlit/
+│   └── config.toml
+│
+├── assets/
+│   └── building_dashboard_hero.png
+│
+├── dashboard/
+│   ├── app.py
+│   ├── charts.py
+│   ├── components.py
+│   ├── state.py
+│   ├── ui.py
+│   ├── __init__.py
+│   │
+│   └── views/
+│       ├── analytics.py
+│       ├── building_simulation.py
+│       ├── dashboard.py
+│       ├── evaluation.py
+│       ├── floor_controls.py
+│       ├── ppo_model.py
+│       ├── settings_page.py
+│       ├── weather_page.py
+│       └── __init__.py
+│
+├── environment/
+│   ├── building_env.py
+│   └── __init__.py
+│
+├── outputs/
+│   ├── results/
+│   │   ├── electricity_cost_inr.png
+│   │   ├── evaluation_meta.json
+│   │   ├── evaluation_steps.csv
+│   │   ├── evaluation_summary.csv
+│   │   ├── indoor_temperature.png
+│   │   ├── reward.png
+│   │   ├── summary.csv
+│   │   └── total_energy_kwh.png
+│   │
+│   └── trained_model/
+│       ├── ppo_safe_building_v3.meta.json
+│       └── ppo_safe_building_v3.zip
+│
+├── rl/
+│   ├── analyze_results.py
+│   ├── evaluate.py
+│   ├── model_io.py
+│   ├── train.py
+│   └── __init__.py
+│
+├── safety/
+│   ├── safety_layer.py
+│   └── __init__.py
+│
+├── simulation/
+│   ├── metrics.py
+│   ├── runner.py
+│   ├── scenario.py
+│   └── __init__.py
+│
+├── tests/
+│   ├── conftest.py
+│   ├── test_dashboard_app.py
+│   ├── test_env_behavior.py
+│   ├── test_humidity_observation.py
+│   ├── test_model_io.py
+│   ├── test_original_environment.py
+│   ├── test_preprocessing.py
+│   ├── test_simulation.py
+│   └── test_weather.py
+│
+├── utils/
+│   ├── preprocessing.py
+│   ├── weather.py
+│   └── __init__.py
+│
+├── .gitignore
+├── conftest.py
+├── README.md
+└── requirements.txt
+```
 
 ---
 
-## Safety Layer
+## 8. How the System Works
 
-The Safety Layer is a rule-based component placed between the PPO controller and the building environment.
+The system follows a sequence of observation, action selection, safety checking, simulation, and metric calculation.
 
-Its main responsibilities are:
+### Step 1: Initialize the Application
+
+The Streamlit application loads the dashboard modules and initializes the required application state.
+
+### Step 2: Prepare the Building Scenario
+
+The simulation prepares the conditions required for the building environment, including the relevant environmental inputs and control targets.
+
+### Step 3: Obtain an Observation
+
+The environment provides an observation representing the building state. The PPO agent uses this observation to select an action.
+
+### Step 4: Generate a Control Action
+
+The PPO controller proposes HVAC control actions according to its learned policy.
+
+### Step 5: Apply Safety Checks
+
+The Safety Layer examines the proposed actions and adjusts them when its configured rules require intervention.
+
+### Step 6: Update the Simulation
+
+The environment applies the resulting actions and updates simulated building conditions.
+
+### Step 7: Calculate Metrics
+
+The simulation calculates the available metrics, such as energy consumption, indoor temperature, reward, comfort, and safety.
+
+### Step 8: Display Results
+
+The dashboard presents the resulting information through metrics, tables, and charts.
+
+### Step 9: Evaluate Controller Performance
+
+The evaluation module can compare PPO with the rule-based baseline across simulated episodes.
+
+---
+
+## 9. Reinforcement Learning Approach
+
+### 9.1 What Is Reinforcement Learning?
+
+Reinforcement Learning is a machine learning approach in which an agent learns to make decisions by interacting with an environment.
+
+The agent observes the current state, selects an action, and receives a reward based on the outcome.
+
+Over time, the agent attempts to learn a policy that maximizes cumulative reward.
+
+### 9.2 PPO Algorithm
+
+This project uses Proximal Policy Optimization (PPO), a policy-gradient reinforcement learning algorithm.
+
+PPO updates its policy while limiting excessively large policy changes. This helps make policy optimization more stable than unrestricted policy updates.
+
+### 9.3 PPO Components in This Project
+
+| Component | Project Role |
+|---|---|
+| Agent | PPO controller |
+| Environment | Simulated building |
+| Observation | Building state and relevant control information |
+| Action | Proposed HVAC controls |
+| Reward | Feedback calculated by the environment |
+| Policy | Learned mapping from observations to actions |
+| Episode | A sequence of environment interactions |
+
+### 9.4 Training Process
+
+The general training process is:
+
+1. Initialize the building environment.
+2. Create or load the PPO model.
+3. Collect observations from the environment.
+4. Generate HVAC actions.
+5. Apply the actions to the environment.
+6. Record rewards and transitions.
+7. Update the PPO policy.
+8. Save the trained model and associated metadata.
+
+The exact observation space, action space, reward formula, and training configuration are defined in the project's implementation.
+
+---
+
+## 10. Safety Layer
+
+The Safety Layer is a rule-based component intended to check control actions before they are applied to the simulated building.
+
+Its purpose is to help prevent unsuitable actions and maintain the configured simulation constraints.
+
+### Main Responsibilities
 
 - Check proposed HVAC actions.
-- Apply predefined control restrictions.
-- Adjust actions when required.
-- Record Safety Layer interventions.
-- Support evaluation of safety-related behavior.
+- Apply the rules implemented in `safety/safety_layer.py`.
+- Adjust actions when required by those rules.
+- Record or support measurement of safety interventions.
+- Help evaluate controller behavior.
 
-The simulation uses an indoor temperature safety range of **18°C to 30°C** and a comfort range of **22°C to 25°C**.
+### Simulation Temperature Ranges
 
-These ranges are simulation parameters, not universal building standards.
+The project has previously used these configured temperature ranges:
 
-The project measures safety before the environment's emergency temperature clamp so that safety violations are not hidden by the clamp.
+| Parameter | Temperature |
+|---|---:|
+| Safety lower bound | 18°C |
+| Safety upper bound | 30°C |
+| Comfort lower bound | 22°C |
+| Comfort upper bound | 25°C |
 
-**Limitation:** The Safety Layer is an experimental rule filter, not a certified safety system. It does not guarantee safety in real buildings.
+These values describe simulation settings, not universal building regulations.
+
+**Safety limitation:** The Safety Layer is an experimental rule-based component. It is not a certified safety controller and does not guarantee safety in a real building.
 
 ---
 
-## Dashboard Modules
+## 11. Dashboard Modules
 
-The application provides the following pages:
+The dashboard source is organized under `dashboard/` and `dashboard/views/`.
 
-| Module | Purpose |
+| File | Intended Responsibility |
 |---|---|
-| Dashboard | Overview of the current building simulation |
-| Building Simulation | Run and monitor simulated building behavior |
-| Floor Controls | Configure individual floor targets and controls |
-| Weather and Location | Select a location and inspect outdoor weather data |
-| PPO Model | Inspect model status and run model-related checks |
-| Performance Analytics | Visualize simulation metrics and trends |
-| Evaluation Results | Examine controller evaluation results |
-| Settings | Configure available application settings |
+| `dashboard/app.py` | Streamlit application entry point |
+| `dashboard/charts.py` | Chart-related functionality |
+| `dashboard/components.py` | Reusable UI components |
+| `dashboard/state.py` | Application state management |
+| `dashboard/ui.py` | Shared interface functionality |
+| `dashboard/views/dashboard.py` | Main dashboard view |
+| `dashboard/views/building_simulation.py` | Building simulation view |
+| `dashboard/views/floor_controls.py` | Floor controls |
+| `dashboard/views/weather_page.py` | Weather interface |
+| `dashboard/views/ppo_model.py` | PPO model interface |
+| `dashboard/views/analytics.py` | Analytics view |
+| `dashboard/views/evaluation.py` | Evaluation view |
+| `dashboard/views/settings_page.py` | Settings interface |
 
-The dashboard supports simulation controls such as starting, pausing, resuming, resetting, and advancing a simulation step.
+These descriptions are based on filenames and project organization. The detailed behavior of each page is defined by its implementation.
 
 ---
 
-## Installation
+## 12. Installation and Setup
 
 ### Prerequisites
 
-Install the following before running the project:
+Install:
 
-- Python compatible with the dependencies in `requirements.txt`
-- Git
-- Internet access for retrieving live weather data
+- Python compatible with the listed dependencies.
+- Git.
+- Internet access for live weather retrieval.
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/saniyakhadapkar-2005/SafeRL-Building-Energy-Optimization.git
 ```
 
-### 2. Open the Project Directory
+### Step 2: Open the Project Directory
 
 ```bash
 cd SafeRL-Building-Energy-Optimization
 ```
 
-Run subsequent commands from the directory containing `requirements.txt`.
+Run the remaining commands from the directory containing `requirements.txt`.
 
-### 3. Create a Virtual Environment
+### Step 3: Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 4. Activate the Environment
+### Step 4: Activate the Environment
 
 **Windows Command Prompt:**
 
@@ -301,216 +478,261 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 5. Install Dependencies
+### Step 5: Upgrade pip
 
 ```bash
 python -m pip install --upgrade pip
+```
+
+### Step 6: Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-PyTorch can require a substantial download. If you need a CPU-only installation, follow the appropriate installation instructions for your operating system and Python version.
+### Dependencies in requirements.txt
+
+The project declares the following dependencies:
+
+```text
+numpy>=1.24
+pandas>=2.0
+gymnasium>=0.29
+stable-baselines3>=2.3
+streamlit>=1.40
+plotly>=5.20
+requests>=2.28
+matplotlib>=3.7
+pytest>=7.4
+```
 
 ---
 
-## Running the Project
+## 13. Running the Application
 
-Start the Streamlit dashboard from the project root:
+From the project root, start the Streamlit application:
 
 ```bash
 streamlit run dashboard/app.py
 ```
 
-Open the local address displayed in the terminal. The default is usually:
+After the application starts, open the local URL printed in the terminal.
+
+The default Streamlit address is usually:
 
 ```text
 http://localhost:8501
 ```
 
-The dashboard can then be used to inspect the simulation, configure available controls, and view performance metrics.
+If the command fails, verify that the virtual environment is active and that dependencies were installed successfully.
 
-### Weather Configuration
+### Weather Availability
 
-The application uses Open-Meteo for live outdoor weather retrieval.
+Live weather data requires a working network connection and a valid response from the configured weather service.
 
-Select a supported city or configure a custom location in the Weather and Location page.
-
-Live weather availability depends on network access and the weather service. If live retrieval fails, check the displayed source label to determine whether the application is using a stale reading or simulated data.
+If weather data is unavailable, inspect the application's weather status and error handling. Do not assume that displayed weather values are live without checking the application's source indicator.
 
 ---
 
-## Training and Evaluation
+## 14. Training the PPO Model
 
-### Train the PPO Agent
+The repository contains `rl/train.py`, which is responsible for model training.
 
-If a compatible trained model is unavailable, train the agent using:
+The intended module-based training command is:
 
 ```bash
 python -m rl.train
 ```
 
-The training module supports a configurable timestep count. For example:
+The exact supported arguments depend on the implementation in `rl/train.py`. Check the script's argument parser before supplying optional parameters.
 
-```bash
-python -m rl.train --timesteps 500000
+The trained model directory currently contains:
+
+```text
+outputs/
+└── trained_model/
+    ├── ppo_safe_building_v3.meta.json
+    └── ppo_safe_building_v3.zip
 ```
 
-Training time depends on the hardware and configuration.
+The ZIP file contains the saved PPO model. The metadata file accompanies the model and may be used by the project's model-loading logic to check compatibility.
 
-The dashboard does not automatically train the model on every run. Model training can also be initiated through the available model page.
-
-### Evaluate the Controllers
-
-Run:
-
-```bash
-python -m rl.evaluate --episodes 10
-```
-
-The evaluation compares PPO and the rule-based baseline over multiple simulated episodes.
-
-### Generate Additional Analysis
-
-```bash
-python -m rl.analyze_results
-```
-
-This command can generate static analysis plots from available evaluation results.
-
-Check the project's output directories for the files produced by training and evaluation.
+A saved model does not guarantee identical results across every environment or configuration.
 
 ---
 
-## Performance Results
+## 15. Evaluating the Controllers
 
-The repository README records the following historical evaluation from **10 simulated episodes of 168 hours each**, using synthetic scenarios and held-out random seeds.
+The repository contains:
 
-| Metric | Rule-Based Baseline | PPO |
-|---|---:|---:|
-| Total reward | 32,225.7 | 32,315.7 |
-| Energy consumption | 11,762.3 kWh | 11,594.3 kWh |
-| Estimated electricity cost | ₹67,969.8 | ₹60,836.5 |
-| Comfort | 99.3% | 99.3% |
-| Safety | 100.0% | 100.0% |
-| Safety Layer interventions | 9.8% of steps | 25.9% of steps |
+- `rl/evaluate.py`
+- `rl/analyze_results.py`
+- `simulation/runner.py`
+- `simulation/metrics.py`
+- `simulation/scenario.py`
 
-These figures are simulation results recorded in the repository, not measurements from a real building.
+The evaluation module is intended to evaluate controller behavior in the simulated environment. The analysis module supports analysis of generated results.
 
-### Interpretation
+The following module-based command can be tried from the project root:
 
-- PPO used approximately **1.4% less simulated energy** than the baseline in this evaluation.
-- The recorded estimated cost was approximately **10.5% lower** for PPO.
-- Both controllers achieved the same recorded comfort percentage.
-- Both controllers recorded 100% safety in these scenarios.
-- The Safety Layer intervened more frequently for PPO than for the baseline.
+```bash
+python -m rl.evaluate --help
+```
 
-The results show a modest improvement in simulated energy consumption. However, they do not establish real-world energy savings or demonstrate that the Safety Layer prevented temperature violations in these particular scenarios.
+This displays supported command-line arguments if the script implements a compatible help interface.
 
-Electricity costs depend on the configured tariff and evaluation settings.
+After checking the available arguments, run the evaluation using the supported options.
+
+For result analysis, inspect:
+
+```bash
+python -m rl.analyze_results --help
+```
+
+Use only the arguments supported by the actual script.
+
+### Evaluation Metrics
+
+Relevant metrics for the project include:
+
+- Total reward.
+- Energy consumption.
+- Estimated electricity cost.
+- Comfort percentage.
+- Safety percentage.
+- Safety Layer intervention frequency.
+
+Metrics should be interpreted together rather than using reward alone to determine whether a controller performs better.
 
 ---
 
-## Running Tests
+## 16. Results and Performance Metrics
 
-From the project root, run:
+The repository contains evaluation outputs in `outputs/results/`.
+
+```text
+outputs/results/
+├── electricity_cost_inr.png
+├── evaluation_meta.json
+├── evaluation_steps.csv
+├── evaluation_summary.csv
+├── indoor_temperature.png
+├── reward.png
+├── summary.csv
+└── total_energy_kwh.png
+```
+
+These files provide the basis for inspecting recorded evaluation results and generated visualizations.
+
+### Metric Interpretation
+
+| Metric | Meaning |
+|---|---|
+| Energy Consumption | Simulated energy used by the controller |
+| Estimated Electricity Cost | Cost calculated from simulated energy and the configured tariff |
+| Indoor Temperature | Simulated indoor temperature over time |
+| Comfort Percentage | Percentage calculated according to the project's comfort metric |
+| Safety Percentage | Percentage calculated according to the project's safety metric |
+| Reward | Cumulative or aggregated reward calculated by the evaluation implementation |
+| Safety Interventions | Frequency of actions modified by the Safety Layer |
+
+### Results Reporting
+
+Use the actual contents of `evaluation_summary.csv`, `summary.csv`, and `evaluation_meta.json` to populate any numerical comparison table.
+
+Do not assume that historical results remain identical after retraining or changing the evaluation configuration.
+
+**The results are from a simulation, not a real building.** They do not independently establish real-world energy savings, financial savings, or certified safety.
+
+---
+
+## 17. Running Tests
+
+The repository includes a `tests/` directory with the following test modules:
+
+```text
+tests/
+├── conftest.py
+├── test_dashboard_app.py
+├── test_env_behavior.py
+├── test_humidity_observation.py
+├── test_model_io.py
+├── test_original_environment.py
+├── test_preprocessing.py
+├── test_simulation.py
+└── test_weather.py
+```
+
+Run the test suite from the project root:
 
 ```bash
 python -m pytest -q
 ```
 
-The repository documents tests covering environment behavior, Safety Layer logic, floor-level simulation, weather failure handling, metrics, model compatibility, evaluation outputs, chart builders, and dashboard-related functionality.
+To run a specific test module:
 
-Test results depend on the current code and environment. Run the tests locally to confirm the result for your installation.
-
----
-
-## Project Structure
-
-```text
-SafeRL-Building-Energy-Optimization/
-│
-├── .streamlit/
-│   └── Streamlit configuration
-│
-├── assets/
-│   └── Project assets
-│
-├── dashboard/
-│   ├── app.py
-│   ├── charts.py
-│   └── Dashboard views and pages
-│
-├── environment/
-│   └── Building reinforcement learning environment
-│
-├── outputs/
-│   └── Model and evaluation outputs
-│
-├── rl/
-│   ├── train.py
-│   ├── evaluate.py
-│   ├── analyze_results.py
-│   └── Model-related modules
-│
-├── safety/
-│   └── Safety Layer implementation
-│
-├── simulation/
-│   └── Scenario generation, simulation runner, and metrics
-│
-├── tests/
-│   └── Automated tests
-│
-├── utils/
-│   └── Weather and supporting utilities
-│
-├── .gitignore
-├── conftest.py
-├── README.md
-└── requirements.txt
+```bash
+python -m pytest tests/test_simulation.py -v
 ```
 
-Some folders contain additional modules and files that are not expanded in this overview.
+To see more detailed output:
+
+```bash
+python -m pytest -v
+```
+
+The commands above run the tests defined in the repository. Actual pass or fail status depends on the current code, dependencies, configuration, and environment.
 
 ---
 
-## Limitations
+## 18. Output Files
 
-- The building physics model is simplified and is not calibrated against a real building.
-- Indoor temperature and energy consumption are simulated.
-- Reported cost is an estimate based on the configured electricity tariff.
-- PPO performance depends on training, environment assumptions, and evaluation scenarios.
-- The Safety Layer is a rule-based experimental component, not a certified safety mechanism.
-- Live weather retrieval requires a working network connection.
-- The evaluation results do not establish real-world energy savings.
-- The application is a simulation prototype and does not directly control physical HVAC equipment.
+### Trained Model
+
+```text
+outputs/trained_model/ppo_safe_building_v3.zip
+```
+
+Contains the saved PPO model.
+
+```text
+outputs/trained_model/ppo_safe_building_v3.meta.json
+```
+
+Contains associated model metadata.
+
+### Evaluation Data
+
+```text
+outputs/results/evaluation_summary.csv
+outputs/results/evaluation_steps.csv
+outputs/results/evaluation_meta.json
+outputs/results/summary.csv
+```
+
+These files contain recorded evaluation summaries, step-level information, metadata, or summary data according to the evaluation implementation.
+
+### Generated Visualizations
+
+```text
+outputs/results/electricity_cost_inr.png
+outputs/results/indoor_temperature.png
+outputs/results/reward.png
+outputs/results/total_energy_kwh.png
+```
+
+These images provide visual summaries of selected simulation or evaluation metrics.
 
 ---
 
-## Future Enhancements
+## 19. Limitations
 
-Potential directions for future development include:
-
-- Evaluate the controller with verified historical building and weather datasets.
-- Improve the building model using measured energy and temperature data.
-- Expand evaluation across different weather conditions and occupancy patterns.
-- Study safety constraints and intervention frequency in more challenging scenarios.
-- Compare PPO with additional energy optimization methods.
-- Investigate deployment integrations only after appropriate validation and safety review.
-
-These are potential improvements, not claims about features already implemented.
-
----
-
-## Author
-
-**Saniya Khadapkar**
-
-M.Sc. Artificial Intelligence Student
-
-GitHub: [saniyakhadapkar-2005](https://github.com/saniyakhadapkar-2005)
-
-### Project
-
-Safe RL-Based Building Energy Optimization
-
-**Built with Python, Reinforcement Learning, PPO, Streamlit, and Plotly.**
+- The project uses a simulated building environment.
+- The simulation is not a complete, calibrated physical model of a real building.
+- Simulated energy consumption may differ from real HVAC energy use.
+- Estimated electricity costs depend on the configured tariff and calculated energy.
+- PPO performance depends on training conditions, model compatibility, and evaluation scenarios.
+- The Safety Layer is rule-based and does not constitute a certified safety guarantee.
+- Live weather retrieval depends on network access and the external service.
+- Evaluation results should not be interpreted as measured real-world energy or cost savings.
+- The project does not directly control physical HVAC equipment
