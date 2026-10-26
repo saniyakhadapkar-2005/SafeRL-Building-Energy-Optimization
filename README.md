@@ -736,3 +736,20 @@ These images provide visual summaries of selected simulation or evaluation metri
 - Live weather retrieval depends on network access and the external service.
 - Evaluation results should not be interpreted as measured real-world energy or cost savings.
 - The project does not directly control physical HVAC equipment
+
+- ##Screenshorts
+
+- 1. Dashboard
+     
+<img width="696" height="693" alt="dashbord_page" src="https://github.com/user-attachments/assets/8cc2b6cf-2343-456f-b7d9-70594b26a3df" />
+
+2.Weather and location page
+
+<img width="698" height="672" alt="Weather and loction page" src="https://github.com/user-attachments/assets/e6d7cf5b-ca6c-4dce-af07-9c85cf346df5" />
+
+3.PPO model page
+
+<img width="695" height="407" alt="PPO_model_page" src="https://github.com/user-attachments/assets/6bb26e10-7174-47e3-a243-f6d72dbf19b5" />
+
+4.evaluation result page
+<img width="695" height="595" alt="Evaluation_result_page" src="https://github.com/user-attachments/assets/a9607145-5ab4-4e6a-8b64-380a96fa0b09" />
